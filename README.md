@@ -30,6 +30,111 @@ Welcome to the **Student Performance Analysis Dashboard**, a powerful web applic
 
 ---
 
+## chapter extraction prompt 
+prompt = f"""
+You are an expert in processing educational JSON data for test performance analysis. I have a JSON file with:
+- A "test.syllabus" field with HTML content listing chapters: {syllabus[:1000]}...
+- A "sections" array with questions, each having a "subjectId" (e.g., {list(subject_map.keys())}) and "chapters" (e.g., [{{"title": "Functions"}}]).
+- Subject IDs map to: {json.dumps(subject_map)}.
+
+**Task**:
+Extract all unique chapter titles and associate them with their subject (Physics, Chemistry, Mathematics) by:
+1. Parsing the "test.syllabus" HTML to identify chapter titles and their subjects.
+2. Using "sections.questions.chapters" and "subjectId" to associate chapters with subjects.
+3. If subject is unclear, infer it from chapter titles (e.g., "Mechanics" → Physics, "Organic Chemistry" → Chemistry, "Functions" → Mathematics).
+4. Ensure no duplicate chapters and sort alphabetically within each subject.
+5. For Mathematics, only include chapters clearly related to mathematical topics (e.g., Functions, Algebra, Calculus), excluding any Physics or Chemistry chapters (e.g., Electrochemistry, Capacitance).
+
+**Output** (JSON):
+```json
+{{
+  "Physics": ["Chapter 1", "Chapter 2", ...],
+  "Chemistry": ["Chapter 1", "Chapter 2", ...],
+  "Mathematics": ["Chapter 1", "Chapter 2", ...]
+}}
+
+## feedback extraction prompt 
+
+### Feedback Generation Prompt
+
+This prompt is used to generate personalized feedback using the Gemini API:
+
+```python
+prompt = f"""
+You are an expert educational assistant creating a personalized feedback report for {student_name} based on their performance in {test_info['name']} ({test_info['date']}). Use the provided data to craft a motivating, data-driven narrative with highly specific, chapter-focused actionable suggestions. Avoid generic advice.
+
+**Performance Data**:
+- Total Questions: {total}
+- Correct Answers: {correct}
+- Total Marks Scored: {correct * (test_info['total_marks'] / test_info['total_questions']):.2f}/{test_info['total_marks']}
+- Accuracy: {accuracy:.2f}%
+- Average Time per Question: {avg_time:.2f}s
+- Time Used: {time_used:.2f}% of {test_info['duration']}s
+- Weakest Chapter: {weakest_chapter['chapter']} in {weakest_chapter['subject']} ({weakest_chapter['accuracy']:.2f}%)
+- Strongest Chapter: {strongest_chapter['chapter']} in {strongest_chapter['subject']} ({strongest_chapter['accuracy']:.2f}%)
+- Toughest Difficulty: {toughest_level} ({toughest_level_acc:.2f}%)
+- Accuracy on Slow Questions: {slow_acc:.2f}%
+- Subject-wise Performance:
+{subject_summary}
+- Chapter-wise Performance:
+{chapter_summary_text}
+- Chapters by Subject:
+{json.dumps(chapter_dict, indent=2)}
+
+**Instructions**:
+- **Intro (100–150 words)**: Greet {student_name}, acknowledge effort, highlight strengths (e.g., strongest chapter), and encourage improvement in weaker chapters.
+- **Performance Breakdown (200–300 words)**:
+  - **Subject-wise**: Summarize performance per subject (accuracy, time), noting strongest and weakest subjects.
+  - **Chapter-wise**: Analyze performance by chapter, focusing on weakest and strongest chapters per subject, and identify patterns (e.g., low accuracy or high time).
+  - **Difficulty-wise**: Evaluate accuracy and time across difficulty levels (easy, medium, hard).
+  - **Time vs. Accuracy**: Analyze time spent vs. accuracy, noting trends (e.g., slower questions with lower accuracy).
+  - **Overall Metrics**: Summarize marks, time utilization, and accuracy.
+- **Actionable Suggestions (200–250 words)**: Generate 4–5 specific, data-driven suggestions per subject (Physics, Chemistry, Mathematics), focusing on chapters:
+  - Each suggestion must:
+    - Start with '-'.
+    - Reference specific chapters, accuracy, or time metrics from the data.
+    - For Mathematics, only suggest improvements for chapters listed in the Mathematics section of Chapters by Subject (e.g., Functions, Sets and Relations, excluding Electrochemistry, Capacitance, etc.).
+    - Be practical, tailored, and avoid generic advice (e.g., instead of "study more," suggest "practice Functions problems to improve 38.89% accuracy").
+- **Tone**: Friendly, encouraging, specific, motivating.
+- **Output Format** (markdown):
+```markdown
+### Intro
+...
+### Performance Breakdown
+#### Subject-wise Analysis
+...
+#### Chapter-wise Analysis
+...
+#### Difficulty-wise Analysis
+...
+#### Time and Accuracy Insights
+...
+#### Overall Metrics
+...
+### Actionable Suggestions
+**Physics:**
+- ...
+**Chemistry:**
+- ...
+**Mathematics:**
+- ...
+
+
+## How Prompts Help
+
+- **Chapter Extraction Prompt**: This prompt helps in accurately extracting and categorizing chapters from the JSON data, ensuring that each chapter is associated with the correct subject. This structured data is crucial for generating subject-wise and chapter-wise performance analysis.
+
+- **Feedback Generation Prompt**: This prompt aids in creating personalized and actionable feedback for students. By leveraging detailed performance data, the prompt ensures that the feedback is specific, motivating, and tailored to the student's strengths and weaknesses. This helps students understand their performance better and provides clear guidance on areas for improvement.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License.
+
+
 ## 📈 Project Journey
 
 ### Initial Approach: Colab-Based Analysis
