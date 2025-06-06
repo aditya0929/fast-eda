@@ -46,7 +46,7 @@ Extract all unique chapter titles and associate them with their subject (Physics
 5. For Mathematics, only include chapters clearly related to mathematical topics (e.g., Functions, Algebra, Calculus), excluding any Physics or Chemistry chapters (e.g., Electrochemistry, Capacitance).
 
 **Output** (JSON):
-```json
+
 {{
   "Physics": ["Chapter 1", "Chapter 2", ...],
   "Chemistry": ["Chapter 1", "Chapter 2", ...],
@@ -59,7 +59,7 @@ Extract all unique chapter titles and associate them with their subject (Physics
 
 This prompt is used to generate personalized feedback using the Gemini API:
 
-```python
+
 prompt = f"""
 You are an expert educational assistant creating a personalized feedback report for {student_name} based on their performance in {test_info['name']} ({test_info['date']}). Use the provided data to craft a motivating, data-driven narrative with highly specific, chapter-focused actionable suggestions. Avoid generic advice.
 
@@ -96,8 +96,8 @@ You are an expert educational assistant creating a personalized feedback report 
     - For Mathematics, only suggest improvements for chapters listed in the Mathematics section of Chapters by Subject (e.g., Functions, Sets and Relations, excluding Electrochemistry, Capacitance, etc.).
     - Be practical, tailored, and avoid generic advice (e.g., instead of "study more," suggest "practice Functions problems to improve 38.89% accuracy").
 - **Tone**: Friendly, encouraging, specific, motivating.
-- **Output Format** (markdown):
-```markdown
+- 
+- **Output Format**:
 ### Intro
 ...
 ### Performance Breakdown
@@ -111,6 +111,7 @@ You are an expert educational assistant creating a personalized feedback report 
 ...
 #### Overall Metrics
 ...
+
 ### Actionable Suggestions
 **Physics:**
 - ...
@@ -139,7 +140,7 @@ This project is licensed under the MIT License.
 
 ### Initial Approach: Colab-Based Analysis
 
-The project began with a `student_performance_analysis.py` script in Google Colab:
+The project began with a `main.py` script in Google Colab:
 
 - **JSON Parsing**: Extracted test details, subject performance, and question-level data  
 - **Data Analysis**: Used Pandas for computing metrics like accuracy and time taken  
