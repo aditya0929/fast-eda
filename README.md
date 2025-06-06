@@ -4,25 +4,7 @@
 
 Welcome to the **Student Performance Analysis Dashboard**, a powerful web application built with **Streamlit** to analyze student test performance data. This tool transforms raw JSON data into interactive visualizations, detailed insights, and professional PDF reports, helping students and educators identify strengths, weaknesses, and actionable improvement areas.
 
----
 
-## 📚 Table of Contents
-
-- [Features](#features)  
-- [Tech Stack](#tech-stack)  
-- [Project Journey](#project-journey)  
-  - [Initial Approach: Colab-Based Analysis](#initial-approach-colab-based-analysis)  
-  - [Transition to Streamlit](#transition-to-streamlit)  
-  - [Prompts and Iterations](#prompts-and-iterations)  
-- [Key Design Decisions](#key-design-decisions)  
-- [Installation](#installation)  
-- [Usage](#usage)  
-- [JSON Data Format](#json-data-format)  
-- [Contributing](#contributing)  
-- [License](#license)  
-- [Acknowledgments](#acknowledgments)
-
----
 
 ## 🚀 Features
 
