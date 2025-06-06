@@ -1,6 +1,7 @@
-# fast-eda
+# fast-eda 
 
 # Student Performance Analysis Dashboard
+## recommended - light theme mode 
 
 Welcome to the **Student Performance Analysis Dashboard**, a powerful web application built with **Streamlit** to analyze student test performance data. This tool transforms raw JSON data into interactive visualizations, detailed insights, and professional PDF reports, helping students and educators identify strengths, weaknesses, and actionable improvement areas.
 ![image](https://github.com/user-attachments/assets/be23767a-002f-44cc-9418-6ef5065c4774)
