@@ -18,6 +18,8 @@ Welcome to the **Student Performance Analysis Dashboard**, a powerful web applic
 
 ---
 ![image](https://github.com/user-attachments/assets/16b9160a-60db-4d91-9cfd-88f7de0bd394)
+![image](https://github.com/user-attachments/assets/c0c01567-a7db-424b-9217-1662499d7717)
+
 
 ## 🧰 Tech Stack
 
