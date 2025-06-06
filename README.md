@@ -3,6 +3,7 @@
 # Student Performance Analysis Dashboard
 
 Welcome to the **Student Performance Analysis Dashboard**, a powerful web application built with **Streamlit** to analyze student test performance data. This tool transforms raw JSON data into interactive visualizations, detailed insights, and professional PDF reports, helping students and educators identify strengths, weaknesses, and actionable improvement areas.
+![image](https://github.com/user-attachments/assets/be23767a-002f-44cc-9418-6ef5065c4774)
 
 
 
@@ -16,6 +17,7 @@ Welcome to the **Student Performance Analysis Dashboard**, a powerful web applic
 - 👤 **User-Friendly Interface**: Streamlit-powered dashboard with a sidebar for file uploads, navigation, and student name input.
 
 ---
+![image](https://github.com/user-attachments/assets/16b9160a-60db-4d91-9cfd-88f7de0bd394)
 
 ## 🧰 Tech Stack
 
@@ -29,6 +31,9 @@ Welcome to the **Student Performance Analysis Dashboard**, a powerful web applic
 - **Bootstrap & Custom CSS**: Dashboard styling  
 
 ---
+![image](https://github.com/user-attachments/assets/a3021bac-9461-4a4a-8b60-f855ce45e9ea)
+![image](https://github.com/user-attachments/assets/8cc09c61-3619-4206-a399-2b8a4118917f)
+
 
 ## chapter extraction prompt 
 prompt = f"""
